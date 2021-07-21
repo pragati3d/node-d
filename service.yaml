@@ -1,0 +1,60 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2021-07-19T07:19:16Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      app: demos
+    name: demos
+    namespace: default
+    resourceVersion: "2708"
+    selfLink: /api/v1/namespaces/default/services/demos
+    uid: 3dbafb57-9af4-4170-ba68-bd7d8ec2b5ff
+  spec:
+    clusterIP: 10.8.5.40
+    externalTrafficPolicy: Cluster
+    ports:
+    - nodePort: 31894
+      port: 3003
+      protocol: TCP
+      targetPort: 3003
+    selector:
+      app: demos
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.132.11.24
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2021-07-19T07:15:24Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "155"
+    selfLink: /api/v1/namespaces/default/services/kubernetes
+    uid: 303e6d94-d705-4c4c-8c0d-7bf2df42cf6c
+  spec:
+    clusterIP: 10.8.0.1
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
